@@ -14,7 +14,7 @@
           "private/templates/js/view.js"
         ]
       },
-      "jade" : {
+      "jadesass" : {
         "files" : [
           "private/templates/jade/view.jade",
           "private/templates/js/view.js"
@@ -22,13 +22,13 @@
       },
       "es6" : {
         "files" : [
-          "private/templates/html/view.html",
+          "private/templates/jade/view.jade",
           "private/templates/js/view.next.js"
         ]
       },
       "coffee" : {
         "files" : [
-          "private/templates/html/view.html",
+          "private/templates/jade/view.jade",
           "private/templates/coffee/view.coffee"
         ]
       }
@@ -104,7 +104,7 @@
           "private/templates/less/module.less"
         ]
       },
-      "jade&sass" : {
+      "jadesass" : {
         "files" : [
           "private/templates/jade/module.jade",
           "private/templates/js/module.js",
@@ -113,16 +113,16 @@
       },
       "es6" : {
         "files" : [
-          "private/templates/html/module.html",
+          "private/templates/jade/module.jade",
           "private/templates/js/module.next.js",
-          "private/templates/less/module.less"
+          "private/templates/sass/module.sass"
         ]
       },
       "coffee" : {
         "files" : [
-          "private/templates/html/module.html",
+          "private/templates/jade/module.jade",
           "private/templates/coffee/module.coffee",
-          "private/templates/less/module.less"
+          "private/templates/sass/module.sass"
         ]
       }
     },
@@ -167,7 +167,7 @@
           "private/templates/html/layout.html"
         ]
       },
-      "jade&sass" : {
+      "jadesass" : {
         "files" : [
           "private/templates/jade/layout.jade"
         ]
@@ -186,7 +186,7 @@
           "private/templates/html/common.html"
         ]
       },
-      "jade&sass" : {
+      "jadesass" : {
         "files" : [
           "private/templates/jade/module.jade"
         ]
@@ -210,23 +210,23 @@
     },
     "es6" : {
       "files" : [
-        "private/templates/reset/home.html",
-        "private/templates/reset/layout.html",
+        "private/templates/reset/home.jade",
+        "private/templates/reset/layout.jade",
         "private/templates/reset/routerConfig.next.js",
         "private/templates/reset/mainRoutes.next.js",
-        "private/templates/reset/main.less"
+        "private/templates/reset/main.sass"
       ]
     },
     "coffee" : {
       "files" : [
-        "private/templates/reset/home.html",
-        "private/templates/reset/layout.html",
+        "private/templates/reset/home.jade",
+        "private/templates/reset/layout.jade",
         "private/templates/reset/routerConfig.coffee",
         "private/templates/reset/mainRoutes.coffee",
-        "private/templates/reset/main.less"
+        "private/templates/reset/main.sass"
       ]
     },
-    "jade&sass" : {
+    "jadesass" : {
       "files" : [
         "private/templates/reset/homejade.jade",
         "private/templates/reset/layoutjade.jade",

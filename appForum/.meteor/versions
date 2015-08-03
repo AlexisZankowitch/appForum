@@ -24,6 +24,7 @@ ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
 fezvrasta:bootstrap-material-design@0.3.0
+fourseven:scss@3.2.0
 geojson-utils@1.0.3
 html-tools@1.0.4
 htmljs@1.0.4
@@ -55,6 +56,8 @@ minifiers@1.1.5
 minimongo@1.0.8
 mobile-status-bar@1.0.3
 mongo@1.1.0
+mquandalle:jade@0.4.3
+mquandalle:jade-compiler@0.4.3
 natestrauser:animate-css@3.2.6
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
