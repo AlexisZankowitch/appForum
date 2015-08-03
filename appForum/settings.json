@@ -1,0 +1,6 @@
+{
+    "orion-cli": {
+        "profile": "jadesass",
+        "config": "private/orion-config.json"
+    }
+}
