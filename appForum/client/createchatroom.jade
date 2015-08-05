@@ -1,0 +1,29 @@
+template(name="createChatRoom")
+    +menu
+    .container
+        .firstRow
+            .col-lg-3
+            .col-lg-6.well
+                form.form-horizontal#formCreateChatRoom
+                    fieldset
+                        legend Create a chat room
+                    .form-group
+                        .col-lg-1
+                        .col-lg-10
+                            label.control-label(for='inputNameChatRoom') Name your chat room
+                            input#inputNameChatRoom.form-control.input-lg(type='text')
+                    .form-group
+                        .col-lg-1
+                        .col-lg-10
+                            label.control-label(for='inputPassword') Password
+                            input#inputPassword.form-control(type='text')
+                    .form-group
+                        .col-lg-1
+                        .col-lg-10
+                            label.control-label(for='inputDescription') Description
+                            input#inputDescription.form-control(type='text')
+                    .form-group
+                        .col-lg-12.text-center
+                            button.btn.btn-default.btn-reset(type="reset") Reset
+                            button.btn.btn-primary(type='submit') Create
+            .col-lg-3

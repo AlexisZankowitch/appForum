@@ -1,0 +1,24 @@
+template(name="menu")
+    .navbar.navbar-inverse
+        .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-inverse-collapse')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            if currentUser
+                a.navbar-brand(href='/main') TalkieTalk
+            else
+                a.navbar-brand(href='/') TalkieTalk
+        .navbar-collapse.collapse.navbar-inverse-collapse
+            if currentUser
+                ul.nav.navbar-nav
+                    li.active
+                        a(href='/main') Home
+                    li
+                        a(href='/profile') My profile
+                    form.navbar-form.navbar-left#searchFormMenu
+                        input.form-control.col-lg-8.inputSearchChatRoom#chatRoom(type='text', placeholder='Find a chat room')
+            ul.nav.navbar-nav.navbar-right
+                if currentUser
+                    li
+                        a#logout(href='/') Logout

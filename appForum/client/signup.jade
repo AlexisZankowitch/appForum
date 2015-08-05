@@ -1,0 +1,34 @@
+template(name="signup")
+    form.form-horizontal#formRegistration(style="display:none")
+        .alert.alert-dismissable.alert-danger
+            button.close(type='button', data-dismiss='alert') ×
+            strong Oh snap!
+            p It seems that this email is already used.
+        fieldset
+            legend Sign up
+            .form-group#labelEmail
+                .col-lg-10.col-lg-offset-1
+                    label.control-label(for='inputEmailSignUp') Email
+                    input#inputEmailSignUp.form-control(type='email', placeholder='Email')
+            .form-group#labelPassword
+                .col-lg-10.col-lg-offset-1
+                    label.control-label(for='inputPasswordSignUp') Password
+                    input#inputPasswordSignUp.form-control(type='password', placeholder='Password')
+            .form-group#labelUserName
+                .col-lg-10.col-lg-offset-1
+                    label.control-label(for='inputUserNameSignUp') Username
+                    input#inputUserNameSignUp.form-control(type='text', placeholder='Username')
+            .form-group#labelName
+                .col-lg-10.col-lg-offset-1
+                    label.control-label(for='inputNameSignUp') Name
+                    input#inputNameSignUp.form-control(type='text', placeholder='Name')
+            .form-group#labelFirstName
+                .col-lg-10.col-lg-offset-1
+                    label.control-label(for='inputFirstnameSignUp') Firstname
+                    input#inputFirstnameSignUp.form-control(type='text', placeholder='Firstname')
+            .form-group
+                .col-lg-12.text-center
+                    button.btn.btn-default.btn-reset#cancelLink(type="reset") Cancel
+                    button.btn.btn-primary(type='submit') Create
+
+

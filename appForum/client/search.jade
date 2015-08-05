@@ -1,0 +1,35 @@
+template(name="search")
+    +menu
+    .container
+        .firstRow
+            +searchChatForm
+
+template(name="ccc")
+    .container
+        .firstRow
+            .col-lg-8.col-lg-offset-2.well
+                form#searchFormPage
+                    .form-group
+                        input.form-control.col-lg-8.inputSearchChatRoom#cChatRoom(type='text', placeholder='Find a chat room' value="#{searchText}")
+                    .form-group
+                        .col-lg-12.text-right
+                            button.btn.btn-default.btn-reset.btn-sm(type='reset') Cancel
+                            button.btn.btn-primary.btn-sm(type='submit') Submit
+        .row#chatRoomResults
+            each chatRooms
+                .col-lg-8.col-lg-offset-2
+                    .col-lg-6
+                        .panel.panel-primary
+                            .panel-heading
+                                h1.panel-title #{name}
+                            .panel-body
+                                .col-lg-12
+                                    | #{description}
+                                .col-lg-12.text-center
+                                    a.btn.btn-primary.btn-sm(href="/chatroom/#{_id}") Join
+                    .col-lg-6
+                        h4 Users
+                        .row-picture
+                            img.circle(src='http://lorempixel.com/56/56/people/1', alt='icon')
+                            img.circle(src='http://lorempixel.com/56/56/people/2', alt='icon')
+                            img.circle(src='http://lorempixel.com/56/56/people/3', alt='icon')

@@ -1,0 +1,38 @@
+template(name="main")
+    +menu
+    #homePage
+    .container
+        #firstRow
+            .col-lg-12.white(style="margin-top:-20px;height:350px;")
+                .col-lg-6
+                    blockquote.pull-right.top100px
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                        small
+                            | Someone famous in
+                            cite(title='Source Title') Source Title
+                .col-lg-6
+                    .row.top50px
+                        .col-lg-2
+                            img.circle(src='http://lorempixel.com/56/56/people/1', alt='icon')
+                        .col-lg-10.chatMsgs
+                            p.list-group-item-text Donec id elit non mi porta gravida at eget metus
+                    .row.top50px
+                        .col-lg-10.chatMsgs
+                            p.list-group-item-text Maecenas sed diam eget risus varius blandit.
+                        .col-lg-2
+                            img.circle(src='http://lorempixel.com/56/56/people/6', alt='icon')
+                    .row.top50px
+                        .col-lg-2
+                            img.circle(src='http://lorempixel.com/56/56/people/4', alt='icon')
+                        .col-lg-10.chatMsgs
+                            p.list-group-item-text Donec id elit non mi porta gravida at eget metus
+
+        .row
+            .col-lg-4
+            .col-lg-4.text-center#mainButtons
+                .col-lg-12
+                    a.btn.btn-info.btn-lg(href="/create") Create chat room
+                .col-lg-12
+                    a.btn.btn-primary.btn-lg(href='/search') Join a chat room
+            .col-lg-4

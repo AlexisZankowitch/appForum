@@ -1,0 +1,24 @@
+template(name="login")
+    form.form-horizontal#loginForm
+        .alert.alert-dismissable.alert-danger
+            button.close(type='button', data-dismiss='alert') ×
+            strong Oh snap!
+            p We don't know you !!
+        fieldset
+            legend Sign in
+            .form-group#labelEmail
+                .col-lg-1
+                .col-lg-10
+                    label.control-label(for='inputEmail') Email
+                    input#inputEmail.form-control(type='email', placeholder='Email')
+                .col-lg-1
+            .form-group#labelPassword
+                .col-lg-1
+                .col-lg-10
+                    label.control-label(for='inputPassword') Password
+                    input#inputPassword.form-control(type='password', placeholder='Password')
+                .col-lg-1
+            .form-group
+                .col-lg-12.text-center
+                    a.btn.btn-info#registerLink(href='/signup')  Register
+                    button.btn.btn-primary(type='submit') Sign in
