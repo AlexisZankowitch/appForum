@@ -3,33 +3,21 @@ template(name="search")
     .container
         .firstRow
             +searchChatForm
-
-template(name="ccc")
-    .container
-        .firstRow
-            .col-lg-8.col-lg-offset-2.well
-                form#searchFormPage
-                    .form-group
-                        input.form-control.col-lg-8.inputSearchChatRoom#cChatRoom(type='text', placeholder='Find a chat room' value="#{searchText}")
-                    .form-group
-                        .col-lg-12.text-right
-                            button.btn.btn-default.btn-reset.btn-sm(type='reset') Cancel
-                            button.btn.btn-primary.btn-sm(type='submit') Submit
-        .row#chatRoomResults
-            each chatRooms
-                .col-lg-8.col-lg-offset-2
-                    .col-lg-6
-                        .panel.panel-primary
-                            .panel-heading
-                                h1.panel-title #{name}
-                            .panel-body
-                                .col-lg-12
-                                    | #{description}
-                                .col-lg-12.text-center
-                                    a.btn.btn-primary.btn-sm(href="/chatroom/#{_id}") Join
-                    .col-lg-6
-                        h4 Users
-                        .row-picture
-                            img.circle(src='http://lorempixel.com/56/56/people/1', alt='icon')
-                            img.circle(src='http://lorempixel.com/56/56/people/2', alt='icon')
-                            img.circle(src='http://lorempixel.com/56/56/people/3', alt='icon')
+    #complete-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                    h4.modal-title ChatRoom secures by a password
+                .modal-body
+                    form.form-horizontal#passChat
+                        input(hidden id="hideidchatroom")
+                        .form-group#labelPassword
+                            .col-lg-10.col-lg-offset-1
+                                label.control-label(for='inputPasswordSignUp') Password
+                                input#inputPasswordSignUp.form-control(type='password', placeholder='Password')
+                        .form-group
+                            .col-lg-12.text-center
+                                button.btn.btn-default#cancelLink(type="button" data-dismiss="modal") Cancel
+                                button.btn.btn-primary(type='submit') Join
+                .modal-footer

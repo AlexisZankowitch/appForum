@@ -18,6 +18,7 @@ Template.menu.events({
             .getComponentInstance({ index: 'chatrooms' })
             .search(chatroom)
         ;
+        $(".inputSearchChatRoom").val('');
         Router.go('/search/'+chatroom);
     }
 });

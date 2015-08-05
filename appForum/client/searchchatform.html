@@ -16,7 +16,11 @@
                            <p class="top19">{{description}}</p>
                        </div>
                        <div class="col-lg-2 text-center">
-                           <a href="/chatroom/{{_id}}" class="joinChat btn btn-primary btn-sm">Join</a>
+                           <a href="#" data-toggle='modal' data-target='#complete-dialog' class="joinChat btn btn-primary btn-sm">
+                               Join
+                               <div class="ripple-wrapper"></div>
+                           </a>
+
                        </div>
                    </div>
                    <div class="custom-separator"></div>
@@ -35,7 +39,6 @@
        </div>
     </div>
     <script type="text/javascript">
-        console.log('{{searchText}}');
         $('.inputSearchChatRoom').val('{{searchText}}');
         EasySearch
             .getComponentInstance({ index: 'chatrooms' })
