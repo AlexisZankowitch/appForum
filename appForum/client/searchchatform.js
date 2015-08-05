@@ -1,6 +1,15 @@
 Template.searchChatForm.events({
     'click .joinChat' : function(e,t){
-        //TODO vérifier si l'user est pas deja dans la liste si oui ne pas lui demander le pass
-        $("#hideidchatroom").val(this._id);
+        e.preventDefault();
+        var chatRoomUsers = ChatRooms.find({
+            _id :  this._id
+        }).fetch();
+        if(jQuery.inArray(Meteor.userId(),chatRoomUsers[0].users)>=0){
+            console.log('/chatroom/'+this._id);
+            Router.go('/chatroom/'+this._id);
+        }else{
+            $("#hideidchatroom").val(this._id);
+            $('#joinchat-dialog').modal('toggle');
+        }
     }
 });

@@ -10,6 +10,11 @@ Template.createChatRoom.events({
             if(err){
                 console.log(err);
             }else{
+                data = {
+                    chatRoomId : t,
+                    userId : Meteor.userId()
+                };
+                Meteor.call('addUserToChat',data);
                 Router.go('/chatroom/'+t);
             }
         });

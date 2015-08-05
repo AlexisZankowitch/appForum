@@ -1,9 +1,5 @@
 Meteor.publish("chatrooms",function(){
-    return ChatRooms.find({},{
-        sort : {
-            createdAt : -1
-        }
-    });
+    return ChatRooms.find({});
 });
 
 Meteor.publish("users", function () {

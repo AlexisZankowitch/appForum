@@ -45,18 +45,35 @@ Router.route('/create',function(){
 });
 
 Router.route('/chatroom/:_id',function(){
-    this.render('chatroom',{
-        data : function(){
-            templateData = {
-               chatRoomId : this.params._id,
-                chatMessages : ChatMsgs.find({
-                    chatRoomId : this.params._id
-                })
-            };
-            return templateData;
+    //TODO console warning : Route dispatch never rendered. Did you forget to call this.next() in an onBeforeAction?
+    this.wait(Meteor.subscribe('chatrooms',this.params._id));
+    if(this.ready()){
+        var chatRoomUsers = ChatRooms.find({
+            _id : this.params._id
+        },{
+            fields : {
+                users : 1
+            }
+        }).fetch();
+        if(jQuery.inArray(Meteor.userId(),chatRoomUsers[0].users)>=0){
+            this.render('chatroom',{
+                data : function(){
+                    templateData = {
+                        chatRoomId : this.params._id,
+                        chatMessages : ChatMsgs.find({
+                            chatRoomId : this.params._id
+                        })
+                    };
+                    return templateData;
+                }
+            });
+        }else{
+            this.render('main');
         }
-    });
+    }
 });
+
+
 
 Router.onBeforeAction(function(){
     if(!Meteor.userId()){

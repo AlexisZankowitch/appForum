@@ -13,11 +13,9 @@ Template.chatroom.events({
             }
         });
         $('#chat-input').val('');
-
     }
 });
 Template.chatroom.helpers({
-
     users : function(){
         var users = [];
         var res = ChatRooms.find({
@@ -32,7 +30,6 @@ Template.chatroom.helpers({
             });
             users.push(user);
         });
-        console.log(users);
         return users;
     }
 });

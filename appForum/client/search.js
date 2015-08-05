@@ -12,14 +12,21 @@ Template.search.events({
     },
     'submit #passChat' : function(e,t){
         e.preventDefault();
-        var pass = t.find('#inputPasswordSignUp').value;
+        var pass = t.find('#inputPasswordSignUp').value,
+            chatRoomId = $("#hideidchatroom").val();
         var chatroom = ChatRooms.find({
-            _id :  $("#hideidchatroom").val()
+            _id :  chatRoomId
         }).fetch();
         if(pass===chatroom[0].password){
-            //TODO peut rentrer dans le chat => ajouter l'users au chat
+            var data = {
+                chatRoomId : chatRoomId,
+                userId : Meteor.userId()
+            };
+            Meteor.call('addUserToChat',data);
+            Router.go('/chatroom/'+chatRoomId);
         }else{
             //TODO boulet mauvais pass envoie erreur et toutiquanti
+            console.log('bad password');
         }
     }
 });

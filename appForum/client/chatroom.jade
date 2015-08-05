@@ -2,21 +2,22 @@ template(name="chatroom")
     +menu
     #chat-room-id(style="display:none;") #{chatRoomId}
     .col-lg-2.border-right#chatUsers
-        .row
+        .col-lg-12
             .col-lg-6
                 h2(style="padding-left:20px;") Users
             .col-lg-6
                 a.btn.btn-danger.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#complete-dialog' style="margin-top:23px;")
                     | Add
                     .ripple-wrapper
-        .row
+        .col-lg-12(style="padding:0;")
             .list-group
                 each users
                     +chatuser
     .container
         .firstRow
-            .col-lg-8.col-lg-offset-2#chatBox
+            #chatBox
                 .list-group
+                    //TODO show author
                     each chatMessages
                         +chatmsg
         form#chat-form
