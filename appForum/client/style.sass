@@ -70,16 +70,26 @@ div#chatBox
       text-align: right
       .chatMsgs
         text-align: left
+        display: inline-block
       .chat-picture
         float: right
         padding-left: 15px
-    .row-picture
-      float: none
+      small
+        display: block
+    .circle
+      width: 29px
+      height: 29px
     .chatMsgs
-      //background-color: #448aff
-      padding: 5px
+      background-color: #0084ff
+      padding: 5px 10px
       width: auto
       max-width: 55%
+      min-width: 10%
+      border-radius: 10px
+      margin: 0
+      color : #fff
+      p
+
 #chat-form
   #chat-input
     position: fixed
