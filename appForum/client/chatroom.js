@@ -1,6 +1,7 @@
 Template.chatroom.events({
     'submit #chat-form' : function(e,t){
         e.preventDefault();
+        var chatBox = $('#chatBox');
         var data = {
             chatRoomId : this.chatRoomId,
             chatRoomMsg : t.find('#chat-input').value
@@ -13,6 +14,32 @@ Template.chatroom.events({
             }
         });
         $('#chat-input').val('');
+        chatBox.mCustomScrollbar("update");
+    },
+    'focus #chat-input' : function(){
+        var chatRoomId = this.chatRoomId;
+        var chatBox = $('#chatBox');
+        $(document).keypress(function(e) {
+            if(!e.shiftKey){
+                var chatInput = $('#chat-input');
+                if(e.which == 13) {
+                    var data = {
+                        chatRoomId : chatRoomId,
+                        chatRoomMsg : chatInput.val()
+                    };
+                    Meteor.call('sendMsgToChat',data, function (err,t) {
+                        if(err){
+                            console.log(err);
+                        }else{
+                            console.log(t);
+                        }
+                    });
+                    chatInput.val('');
+                    chatBox.mCustomScrollbar("update");
+                    chatBox.mCustomScrollbar("scrollTo",$('.mCSB_container').height());
+                }
+            }
+        });
     }
 });
 Template.chatroom.helpers({
@@ -32,4 +59,11 @@ Template.chatroom.helpers({
         });
         return users;
     }
+});
+
+Template.chatroom.onRendered(function () {
+    var chatBox = $('#chatBox');
+    chatBox.mCustomScrollbar({
+        theme:"minimal"
+    });
 });
