@@ -58,7 +58,7 @@ Router.route('/chatroom/:_id',function(){
         if(jQuery.inArray(Meteor.userId(),chatRoomUsers[0].users)>=0){
             this.render('chatroom',{
                 data : function(){
-                    //TODO limit nb messages
+                    //TODO limit nb old messages
                     templateData = {
                         chatRoomId : this.params._id,
                         chatMessages : ChatMsgs.find({

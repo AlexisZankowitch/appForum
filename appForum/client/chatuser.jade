@@ -4,5 +4,6 @@ template(name='chatuser')
             each userProfilePicture
                 +avatar(user=this size='large' shape='circle')
         .row-content
-            h4 #{username}
+            h4.floatleft.ma10per #{username}
+            a.close.ma10per.kickuser(href="#") ×
     .list-group-separator

@@ -70,5 +70,17 @@ Meteor.methods({
                 publishedBy : Meteor.userId()
             });
         }
+    },
+    'removeUserFromChat' : function(data){
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not authorized');
+        }
+        ChatRooms.update({
+            _id : data.chatRoomId
+        },{
+            $pull: {
+                users : data.userId
+            }
+        })
     }
 });

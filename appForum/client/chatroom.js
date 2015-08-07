@@ -16,9 +16,17 @@ Template.chatroom.events({
         $('#chat-input').val('');
         chatBox.mCustomScrollbar("update");
     },
+    'click .kickuser' : function(e,t){
+        e.preventDefault();
+        var data = {
+            chatRoomId : t.data.chatRoomId,
+            userId : this._id
+        };
+        $("#list-users").mCustomScrollbar("destroy");
+        Meteor.call('removeUserFromChat',data);
+        $("#list-users").mCustomScrollbar();
+    },
     'focus #chat-input' : function(){
-        var i=0;
-        console.log(i++);
         var chatRoomId = this.chatRoomId;
         var chatBox = $('#chatBox');
         $(document).keypress(function(e) {
@@ -65,5 +73,8 @@ Template.chatroom.onRendered(function () {
     chatBox.mCustomScrollbar({
         theme:"minimal"
     });
-    chatBox.mCustomScrollbar("scrollTo",$('.mCSB_container').height());
+    $("#list-users").mCustomScrollbar({
+       theme:"minimal-dark"
+    });
+    chatBox.mCustomScrollbar("scrollTo",chatBox.find('.mCSB_container').height());
 });

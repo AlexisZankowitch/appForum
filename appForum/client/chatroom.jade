@@ -6,17 +6,18 @@ template(name="chatroom")
             .col-lg-6
                 h2 Users
             .col-lg-6
-                a.btn.btn-danger.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#complete-dialog' style="margin-top:23px;")
+                a#addusers.btn.btn-danger.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#complete-dialog' style="margin-top:23px;")
                     | Add
                     .ripple-wrapper
-        .col-lg-12(style="padding:0;")
-            .list-group
+        .col-lg-12#divUsers
+            .list-group#list-users
                 each users
                     +chatuser
     .container
         .firstRow
             #chatBox
                 .list-group
+                    //TODO messages presentation
                     each chatMessages
                         +chatmsg
         form#chat-form

@@ -5,9 +5,10 @@
             <div  class="list-group-item" style="margin-top: 5px">
                 <div class="col-lg-10">
                     <div class="row-picture">
-                        <img class="circle" src="http://lorempixel.com/56/56/people/1">
+                        {{> avatar user=this size='large' shape='circle'}}
                     </div>
-                    <h4 class="top19">{{username}} </h4>
+                    <h4 class="top19" style="margin-bottom: 1px">{{username}}</h4>
+                    <small>{{email}}</small>
                 </div>
                 <div class="col-lg-2">
                     <a id="{{_id}}" href="javascript:void(0)" class="addUsersToChat top19 btn btn-info btn-sm">Add<div class="ripple-wrapper"></div></a>
