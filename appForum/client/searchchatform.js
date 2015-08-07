@@ -4,8 +4,7 @@ Template.searchChatForm.events({
         var chatRoom = ChatRooms.find({
             _id :  this._id
         }).fetch();
-        console.log(chatRoom.password);
-        if(!chatRoom.password){
+        if(!chatRoom[0].password){
             var data = {
                 chatRoomId : this._id,
                 userId : Meteor.userId()

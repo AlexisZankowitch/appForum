@@ -69,6 +69,7 @@ Template.chatroom.helpers({
 });
 
 Template.chatroom.onRendered(function () {
+    $('.modal-backdrop ').fadeOut();
     var chatBox = $('#chatBox');
     chatBox.mCustomScrollbar({
         theme:"minimal"
