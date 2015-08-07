@@ -17,6 +17,8 @@ Template.chatroom.events({
         chatBox.mCustomScrollbar("update");
     },
     'focus #chat-input' : function(){
+        var i=0;
+        console.log(i++);
         var chatRoomId = this.chatRoomId;
         var chatBox = $('#chatBox');
         $(document).keypress(function(e) {
@@ -30,8 +32,6 @@ Template.chatroom.events({
                     Meteor.call('sendMsgToChat',data, function (err,t) {
                         if(err){
                             console.log(err);
-                        }else{
-                            console.log(t);
                         }
                     });
                     chatInput.val('');
@@ -51,7 +51,6 @@ Template.chatroom.helpers({
             fields : {users :1}
         }).fetch();
         res[0].users.forEach(function(userid){
-            console.log(userid);
             var user= Meteor.users.findOne({
                 _id : userid
             });
@@ -66,4 +65,5 @@ Template.chatroom.onRendered(function () {
     chatBox.mCustomScrollbar({
         theme:"minimal"
     });
+    chatBox.mCustomScrollbar("scrollTo",$('.mCSB_container').height());
 });

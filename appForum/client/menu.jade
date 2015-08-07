@@ -1,4 +1,5 @@
 template(name="menu")
+    //TODO active
     .navbar.navbar-inverse
         .navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-inverse-collapse')
@@ -12,13 +13,16 @@ template(name="menu")
         .navbar-collapse.collapse.navbar-inverse-collapse
             if currentUser
                 ul.nav.navbar-nav
-                    li.active
-                        a(href='/main') Home
                     li
-                        a(href='/profile') My profile
+                        a(href='/main') Home
                     form.navbar-form.navbar-left#searchFormMenu
                         input.form-control.col-lg-8.inputSearchChatRoom#chatRoom(type='text', placeholder='Find a chat room')
             ul.nav.navbar-nav.navbar-right
                 if currentUser
+                    li
+                        each userprofile
+                            a(href='/profile')
+                                +avatar(user=this size='extra-small' shape='rounded' class='floatleft')
+                                |   my profile
                     li
                         a#logout(href='/') Logout

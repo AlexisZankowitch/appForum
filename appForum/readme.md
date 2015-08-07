@@ -8,3 +8,4 @@
     matteodem:easy-search
     malihu-custom-scrollbar
     momentjs:moment
+    utilities:avatar

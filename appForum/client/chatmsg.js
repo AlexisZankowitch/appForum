@@ -8,5 +8,10 @@ Template.chatmsg.helpers({
     },
     date : function (){
         return moment(this.publishedAt).format('DD-MMM-YYYY HH-mm');
+    },
+    userProfilePicture: function(){
+        return Meteor.users.find({
+            _id : this.publishedBy
+        }).fetch();
     }
 });

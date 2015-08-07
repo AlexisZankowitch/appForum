@@ -1,7 +1,8 @@
 template(name='chatuser')
     .list-group-item
         .row-picture
-            img.circle(src='http://lorempixel.com/56/56/people/1', alt='icon')
+            each userProfilePicture
+                +avatar(user=this size='large' shape='circle')
         .row-content
             h4 #{username}
     .list-group-separator

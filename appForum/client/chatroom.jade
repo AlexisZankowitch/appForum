@@ -1,7 +1,7 @@
 template(name="chatroom")
     +menu
     #chat-room-id(style="display:none;") #{chatRoomId}
-    .col-lg-2.border-right#chatUsers
+    .col-lg-3.border-right#chatUsers
         .col-lg-12
             .col-lg-6
                 h2 Users
@@ -30,5 +30,6 @@ template(name="chatroom")
                     button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
                     h4.modal-title Add users to the chat
                 .modal-body
+                    //TODO image replace
                     +searchUsers
                 .modal-footer

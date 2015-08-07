@@ -13,3 +13,10 @@ Meteor.publish("chatMessages",function(){
         }
     })
 });
+
+Meteor.startup(function () {
+    console.log('url:', Avatar.getUrl());
+    console.log('startup...');
+    console.log('options:', Avatar.options);
+    console.log('url:', Avatar.getUrl());
+});

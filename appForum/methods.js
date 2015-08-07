@@ -1,6 +1,11 @@
 ChatRooms = new Mongo.Collection('chatrooms');
 ChatMsgs = new Mongo.Collection('chatmsgs');
 
+Avatar.setOptions({
+    fallbackType: "default image",
+    gravatarDefault: "identicon"
+});
+
 EasySearch.createSearchIndex('users', {
     field: 'username',
     collection: Meteor.users,
@@ -39,6 +44,7 @@ Meteor.methods({
        });
    },
     addUserToChat : function(data){
+        //TODO send email to user
         if(!Meteor.userId()){
             throw new Meteor.Error('not authorized');
         }
@@ -56,11 +62,13 @@ Meteor.methods({
         if(!Meteor.userId()){
             throw new Meteor.Error('not authorized');
         }
-        return ChatMsgs.insert({
-            chatRoomId : data.chatRoomId,
-            chatRoomMsg : data.chatRoomMsg,
-            publishedAt : new Date(),
-            publishedBy : Meteor.userId()
-        });
+        if(data.chatRoomMsg){
+            return ChatMsgs.insert({
+                chatRoomId : data.chatRoomId,
+                chatRoomMsg : data.chatRoomMsg,
+                publishedAt : new Date(),
+                publishedBy : Meteor.userId()
+            });
+        }
     }
 });
