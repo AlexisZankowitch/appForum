@@ -7,11 +7,7 @@ Meteor.publish("users", function () {
 });
 
 Meteor.publish("chatMessages",function(){
-    return ChatMsgs.find({},{
-        sort : {
-            publishedAt : -1
-        }
-    })
+    return ChatMsgs.find({});
 });
 
 Meteor.startup(function () {

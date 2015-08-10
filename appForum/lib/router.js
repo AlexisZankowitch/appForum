@@ -1,3 +1,7 @@
+Router.configure({
+    layoutTemplate: 'mainLayout'
+});
+
 
 Router.route('/', function () {
     this.render('Home');
@@ -46,7 +50,7 @@ Router.route('/create',function(){
 
 Router.route('/chatroom/:_id',function(){
     //TODO console warning : Route dispatch never rendered. Did you forget to call this.next() in an onBeforeAction?
-    this.wait(Meteor.subscribe('chatrooms',this.params._id));
+    this.wait(Meteor.subscribe('chatMessages',this.params._id));
     if(this.ready()){
         var chatRoomUsers = ChatRooms.find({
             _id : this.params._id
@@ -71,6 +75,9 @@ Router.route('/chatroom/:_id',function(){
         }else{
             this.render('main');
         }
+    }else{
+        console.log('ae');
+        this.render('Loading');
     }
 });
 

@@ -1,5 +1,4 @@
 template(name="main")
-    +menu
     #homePage
     .container
         #firstRow
@@ -7,29 +6,14 @@ template(name="main")
                 .col-lg-6
                     blockquote.pull-right.top100px
                         p
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                            | Talking have never been so easy
                         small
                             | Someone famous in
-                            cite(title='Source Title') Source Title
-                .col-lg-6
-                    .row.top50px
-                        .col-lg-2
-                            img.circle(src='http://lorempixel.com/56/56/people/1', alt='icon')
-                        .col-lg-10.chatMsgs
-                            p.list-group-item-text Donec id elit non mi porta gravida at eget metus
-                    .row.top50px
-                        .col-lg-10.chatMsgs
-                            p.list-group-item-text Maecenas sed diam eget risus varius blandit.
-                        .col-lg-2
-                            img.circle(src='http://lorempixel.com/56/56/people/6', alt='icon')
-                    .row.top50px
-                        .col-lg-2
-                            img.circle(src='http://lorempixel.com/56/56/people/4', alt='icon')
-                        .col-lg-10.chatMsgs
-                            p.list-group-item-text Donec id elit non mi porta gravida at eget metus
-
+                            cite(title='Source Title') a famous magazine
         .row
-
-            .col-lg-12.text-center#mainButtons
+            .col-lg-12.text-center
+                img(src="/hipsterlogogenerator_1439211532769.png" style="height:400px")
+        .row
+            .col-lg-12.text-center
                 a.btn.btn-info.btn-lg(href="/create") Create chat room
                 a.btn.btn-primary.btn-lg(href='/search') Join a chat room

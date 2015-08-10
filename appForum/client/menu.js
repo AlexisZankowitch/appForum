@@ -12,7 +12,8 @@ Template.menu.events({
    },
     'submit #searchFormMenu' : function(e,t){
         e.preventDefault();
-        var chatroom = t.find('#chatRoom').value;
+        var chatroom = $('#chatRoom').val();
+        console.log(chatroom);
         $(".inputSearchChatRoom").val(chatroom);
         EasySearch
             .getComponentInstance({ index: 'chatrooms' })

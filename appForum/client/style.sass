@@ -88,9 +88,12 @@ div#chatUsers
 div#chatBox
   padding-right: 0
   position: absolute
-  height: 79.8%
+  height: 84.8%
   width: 70%
   left: 27%
+  top: 6%
+  &.MainPageChat
+    position: inherit
   .list-chat-item
     margin-top: 15px
     .avatar
@@ -98,11 +101,13 @@ div#chatBox
       img
         width: 100%
         height: 100%
-    &:nth-child(even)
+    &.rightChat
       text-align: right
       .chatMsgs
         text-align: left
         display: inline-block
+        background: #fff
+        color: #939292
       .chat-picture
         float: right
         padding-left: 15px
@@ -152,3 +157,16 @@ div#chatBox
     color: #4285f4
     cursor: pointer
 
+button
+  position: relative
+  padding: 8px 30px
+  border: 0
+  margin: 10px 1px
+  cursor: pointer
+  border-radius: 2px
+  text-transform: uppercase
+  text-decoration: none
+  color: rgba(255, 255, 255, 0.84)
+  transition: background-color 0.2s ease, box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
+  outline: none !important
+  background-color: #03a9f4

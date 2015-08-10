@@ -15,3 +15,14 @@ Template.chatmsg.helpers({
         }).fetch();
     }
 });
+
+Template.chatmsg.onRendered(function(){
+   placeMsg(this);
+});
+
+
+var placeMsg = function(chatData){
+    if(chatData.data.publishedBy===Meteor.userId()){
+        $(chatData.firstNode).addClass('rightChat');
+    }
+};

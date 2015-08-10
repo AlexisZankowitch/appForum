@@ -44,7 +44,7 @@ Template.chatroom.events({
                     });
                     chatInput.val('');
                     chatBox.mCustomScrollbar("update");
-                    chatBox.mCustomScrollbar("scrollTo",$('.mCSB_container').height());
+                    chatBox.mCustomScrollbar("scrollTo",$('#chatBox .mCSB_container').height());
                 }
             }
         });
@@ -79,3 +79,5 @@ Template.chatroom.onRendered(function () {
     });
     chatBox.mCustomScrollbar("scrollTo",chatBox.find('.mCSB_container').height());
 });
+
+
