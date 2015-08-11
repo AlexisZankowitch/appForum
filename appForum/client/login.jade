@@ -1,9 +1,6 @@
 template(name="login")
     form.form-horizontal#loginForm
-        .alert.alert-dismissable.alert-danger
-            button.close(type='button', data-dismiss='alert') ×
-            strong Oh snap!
-            p We don't know you !!
+        .displayAlert
         fieldset
             legend Sign in
             .form-group#labelEmail

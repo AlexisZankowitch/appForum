@@ -10,7 +10,10 @@ Template.signup.events({
         Accounts.createUser({email : data.email, password : data.password, username : data.username},function(err){
             if(err){
                 $('#labelEmail').addClass('has-error');
-                $('.alert p').text(err.reason);
+                var data = {
+                    txt : err.reason
+                };
+                Blaze.renderWithData(Template.alert,data,t.$('.displayAlert').get(0));
                 $('.alert').slideDown();
             }
             else

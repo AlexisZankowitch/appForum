@@ -13,13 +13,13 @@ Template.menu.events({
     'submit #searchFormMenu' : function(e,t){
         e.preventDefault();
         var chatroom = $('#chatRoom').val();
-        console.log(chatroom);
-        $(".inputSearchChatRoom").val(chatroom);
+        var inputSearch = $(".inputSearchChatRoom");
+        inputSearch.val(chatroom);
         EasySearch
             .getComponentInstance({ index: 'chatrooms' })
             .search(chatroom)
         ;
-        $(".inputSearchChatRoom").val('');
+        inputSearch.val('');
         Router.go('/search/'+chatroom);
     }
 });

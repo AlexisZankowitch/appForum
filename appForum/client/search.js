@@ -25,8 +25,13 @@ Template.search.events({
             Meteor.call('addUserToChat',data);
             Router.go('/chatroom/'+chatRoomId);
         }else{
-            //TODO boulet mauvais pass envoie erreur et toutiquanti
-            console.log('bad password');
+            $(".form-group").addClass('has-error');
+            var data = {
+                txt : 'Bad password'
+            };
+            Blaze.renderWithData(Template.alert,data,t.$('.modal-header').get(0));
+            $('.alert').slideDown();
         }
     }
 });
+

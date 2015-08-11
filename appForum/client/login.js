@@ -6,13 +6,15 @@ Template.login.events({
         Meteor.loginWithPassword(email,password,function(err){
             if(err){
                 $(".form-group").addClass('has-error');
-                $('.alert p').text(err.reason);
+                var data = {
+                    txt : err.reason
+                };
+                Blaze.renderWithData(Template.alert,data,t.$('.displayAlert').get(0));
                 $('.alert').slideDown();
             }
             else{
-                    console.log('ok');
-                }
                 Router.go('/main');
+            }
         });
         return false;
     },

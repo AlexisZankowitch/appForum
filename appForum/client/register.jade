@@ -1,9 +1,6 @@
 template(name="signup")
     form.form-horizontal#formRegistration(style="display:none")
-        .alert.alert-dismissable.alert-danger
-            button.close(type='button', data-dismiss='alert') ×
-            strong Oh snap!
-            p It seems that this email is already used.
+        .displayAlert
         fieldset
             legend Sign up
             .form-group#labelEmail

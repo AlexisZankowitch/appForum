@@ -4,7 +4,10 @@ Router.configure({
 
 
 Router.route('/', function () {
-    this.render('Home');
+    if(!Meteor.userId())
+        this.render('Home');
+    else
+        this.render('main');
 });
 
 Router.route('/signup',function(){
