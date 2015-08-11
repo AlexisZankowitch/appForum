@@ -77,7 +77,14 @@ Template.chatroom.onRendered(function () {
     $("#list-users").mCustomScrollbar({
        theme:"minimal-dark"
     });
-    chatBox.mCustomScrollbar("scrollTo",chatBox.find('.mCSB_container').height());
+    if(Session.equals('limit',20)){
+        chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top);
+    }
 });
 
+incrementLimit = function(inc,callback){
+    inc = (!inc)?20:inc;
+    newLimit = Session.get('limit') + inc;
+    Session.set('limit',newLimit);
+};
 

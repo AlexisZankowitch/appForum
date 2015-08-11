@@ -9,3 +9,4 @@
     malihu-custom-scrollbar
     momentjs:moment
     utilities:avatar
+    email

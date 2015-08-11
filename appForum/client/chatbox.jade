@@ -1,0 +1,10 @@
+template(name="chatbox")
+    if Template.subscriptionsReady
+        #chatBox
+            .col-lg-12.text-center
+                button.btn.btn-primary.give-me-more.btn-sm(style='margin:4%;') Load more
+            .list-group
+                each chatMessages
+                    +chatmsg
+    else
+        img(src='/ajax-loader.gif')

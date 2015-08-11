@@ -48,7 +48,7 @@ Meteor.methods({
         if(!Meteor.userId()){
             throw new Meteor.Error('not authorized');
         }
-        ChatRooms.update({
+        return ChatRooms.update({
             _id : data.chatRoomId
         },{
             $addToSet:{
@@ -82,5 +82,19 @@ Meteor.methods({
                 users : data.userId
             }
         })
+    },
+    sendEmail: function (to, from, subject, text) {
+        check([to, from, subject], [String]);
+
+        // Let other method calls from the same client start running,
+        // without waiting for the email sending to complete.
+        this.unblock();
+
+        Email.send({
+            to: to,
+            from: from,
+            subject: subject,
+            html: text
+        });
     }
 });
