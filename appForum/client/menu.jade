@@ -15,8 +15,9 @@ template(name="menu")
                 ul.nav.navbar-nav
                     li
                         a(href='/main') Home
-                    form.navbar-form.navbar-left#searchFormMenu
-                        input.form-control.col-lg-8.inputSearchChatRoom#chatRoom(type='text', placeholder='Find a chat room')
+                    li
+                        form.navbar-form.navbar-left#searchFormMenu
+                            input.form-control.col-lg-8.inputSearchChatRoom#chatRoom(type='text', placeholder='Find a chat room')
             ul.nav.navbar-nav.navbar-right
                 if currentUser
                     li

@@ -20,6 +20,10 @@ Template.menu.events({
             .search(chatroom)
         ;
         inputSearch.val('');
+        $(".navbar-toggle").click();
         Router.go('/search/'+chatroom);
+    },
+    'click .navbar .navbar-nav a' : function(){
+        $(".navbar-toggle").click();
     }
 });

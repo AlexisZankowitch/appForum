@@ -1,13 +1,11 @@
 template(name="home")
-    .container-fluid
-        .row
+    .container
+        .firstRow
             .col-md-12.text-center
-                h1 TalkieTalk
-        .row(style="margin-top:40px;")
+                img#logo-main(src="/hipsterlogogenerator_1439211532769.png" style="height:400px")
+        .row(style="margin-top:1px;")
             .col-md-4
             .col-md-4.well
                 +login
                 +signup
             .col-md-4
-        .row.text-center
-            img(src="/hipsterlogogenerator_1439211532769.png" style="height:400px")

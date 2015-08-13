@@ -48,6 +48,19 @@ Template.chatroom.events({
                 }
             }
         });
+    },
+    'click #show-users' : function(e,t){
+        e.preventDefault();
+        var div = $("#chatUsers");
+        if(!div.attr('style') || div.attr('style')==="left: -100%;"){
+            div.stop().animate({
+                "left" : "0%"
+            },"ease-in");
+        }else{
+            div.stop().animate({
+                "left" : "-100%"
+            },"ease-in");
+        }
     }
 });
 Template.chatroom.helpers({

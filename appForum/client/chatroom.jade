@@ -18,6 +18,8 @@ template(name="chatroom")
         form#chat-form
             textarea#chat-input(placeholder="Type your message here...")
             button.btn.btn-primary#chat-btn(type='submit') Send
+    #show-div(style="overflow:hidden")
+        a.btn.btn-danger.btn-fab.btn-raised.mdi-social-group#show-users(href='javascript:void(0)')
 
     #complete-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
         .modal-dialog

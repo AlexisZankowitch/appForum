@@ -170,3 +170,52 @@ button
   transition: background-color 0.2s ease, box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
   outline: none !important
   background-color: #03a9f4
+
+@media screen and (max-width: 640px)
+  .navbar
+    .navbar-form
+      padding: 15px
+      margin: 0
+    .avatar
+      margin-right: 15px
+  #show-div
+    position: absolute
+    bottom: 20%
+    right: 5%
+    z-index: 4
+  #chatUsers
+    left: -100%
+    z-index: 3
+    margin-top: 30px !important
+  .modal-dialog
+    width: 90%
+  .container
+    &#search-container
+      padding: 0 15px
+    #searchChatInput
+      width: 90%
+      margin-top: 10px
+      position: fixed
+      z-index: 2
+      margin-left: 7%
+    #results-chat
+      margin-top: 25%
+    #logo-main
+      width: 100%
+      height: inherit !important
+    .firstRow
+      margin-top: 50px
+    #chatBox
+      width: 100% !important
+      position: absolute !important
+      top: 50px
+      left: 0px
+      height: 73%
+      .list-chat-item
+        padding: 0px 3px
+      .chatMsgs
+        max-width: 90% !important
+      .chat-picture
+        padding: 0 2px !important
+    #chat-input
+      width: 100% !important
