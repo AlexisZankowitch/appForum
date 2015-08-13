@@ -1,20 +1,6 @@
 Template.chatroom.events({
     'submit #chat-form' : function(e,t){
         e.preventDefault();
-        var chatBox = $('#chatBox');
-        var data = {
-            chatRoomId : this.chatRoomId,
-            chatRoomMsg : t.find('#chat-input').value
-        };
-        Meteor.call('sendMsgToChat',data, function (err,t) {
-            if(err){
-                console.log(err);
-            }else{
-                console.log(t);
-            }
-        });
-        $('#chat-input').val('');
-        chatBox.mCustomScrollbar("update");
     },
     'click .kickuser' : function(e,t){
         e.preventDefault();
@@ -26,12 +12,29 @@ Template.chatroom.events({
         Meteor.call('removeUserFromChat',data);
         $("#list-users").mCustomScrollbar();
     },
+    'click #chat-btn' :function(e,t){
+        var chatInput = $('#chat-input');
+        e.preventDefault();
+        var chatBox = $('#chatBox');
+        var data = {
+            chatRoomId : this.chatRoomId,
+            chatRoomMsg : t.find('#chat-input').value
+        };
+        Meteor.call('sendMsgToChat',data, function (err,t) {
+            if(err){
+                console.log(err);
+            }else{
+                chatInput.val('');
+                chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
+            }
+        });
+    },
     'focus #chat-input' : function(){
         var chatRoomId = this.chatRoomId;
+        var chatInput = $('#chat-input');
         var chatBox = $('#chatBox');
         $(document).keypress(function(e) {
             if(!e.shiftKey){
-                var chatInput = $('#chat-input');
                 if(e.which == 13) {
                     var data = {
                         chatRoomId : chatRoomId,
@@ -40,11 +43,12 @@ Template.chatroom.events({
                     Meteor.call('sendMsgToChat',data, function (err,t) {
                         if(err){
                             console.log(err);
+                        }else{
+                            chatInput.val('');
+                            chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
                         }
                     });
-                    chatInput.val('');
-                    chatBox.mCustomScrollbar("update");
-                    chatBox.mCustomScrollbar("scrollTo",$('#chatBox .mCSB_container').height());
+
                 }
             }
         });
@@ -91,7 +95,7 @@ Template.chatroom.onRendered(function () {
        theme:"minimal-dark"
     });
     if(Session.equals('limit',20)){
-        chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top);
+        chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
     }
 });
 

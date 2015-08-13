@@ -51,12 +51,20 @@
       a:hover
         background: rgba(255, 255, 255, 0.1)
 
+#show-div
+  position: absolute
+  bottom: 20%
+  right: 5%
+  z-index: 4
+
 div#chatUsers
   background-color: rgb(255, 255, 255)
   position: fixed
   margin-top: 60px
   height: 100%
   padding: 0
+  left: -100%
+  z-index: 3
   #divUsers
     padding: 0
     height: 90%
@@ -89,13 +97,15 @@ div#chatBox
   padding-right: 0
   position: absolute
   height: 84.8%
-  width: 70%
-  left: 27%
+  width: 90%
+  margin: auto
   top: 6%
   &.MainPageChat
     position: inherit
   .list-chat-item
     margin-top: 15px
+    &:last-child
+      margin-bottom: 50px
     .avatar
       z-index: 1
       img
@@ -125,18 +135,17 @@ div#chatBox
       border-radius: 10px
       margin: 0
       color : #fff
-      p
 
 #chat-form
   #chat-input
     position: fixed
     bottom: 0
-    width: 75%
+    width: 100%
     right: 0
     border: none
     border-top: 1px solid #757575
     height: 100px
-    padding: 10px 10% 10px 10px
+    padding: 10px 10%
     z-index: 2
   #chat-btn
     position: fixed
@@ -178,14 +187,7 @@ button
       margin: 0
     .avatar
       margin-right: 15px
-  #show-div
-    position: absolute
-    bottom: 20%
-    right: 5%
-    z-index: 4
   #chatUsers
-    left: -100%
-    z-index: 3
     margin-top: 30px !important
   .modal-dialog
     width: 90%
@@ -219,3 +221,6 @@ button
         padding: 0 2px !important
     #chat-input
       width: 100% !important
+      padding: 10px 35% 10px 10px !important
+    #chat-btn
+      bottom: 4% !important

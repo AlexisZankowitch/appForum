@@ -28,12 +28,10 @@ Template.chatmsg.onRendered(function(){
         chatBox.mCustomScrollbar("scrollTo",$(this.firstNode).position().top-$("#chatBox").height()+$("#chatBox").height()*30/100);
     }
     else{
+        $('.list-chat-item:last-child').prev().removeAttr('id','scrool');
         $('.list-chat-item:last-child').attr('id','scrool');
     }
-});
-
-Template.chatmsg.rendered = function(){
     $(window).scroll(function(){
         console.log('aze');
     });
-};
+});
