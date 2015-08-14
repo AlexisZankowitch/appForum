@@ -52,6 +52,7 @@ Router.route('/chatroom/:_id',function(){
     Session.set('limit',20);
     //Session notification
     Session.set('sendMsg',false);
+    Session.set('nbMsg',0);
     //TODO console warning : Route dispatch never rendered. Did you forget to call this.next() in an onBeforeAction?
 
     this.wait(Meteor.subscribe('usersChat',this.params._id));

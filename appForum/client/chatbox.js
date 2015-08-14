@@ -36,5 +36,11 @@ Template.chatmsg.onRendered(function(){
             body: "There is a new message !!",
             icon: "/hipsterlogogenerator_1439211532769.png"
         });
+        if(Session.get('blur')){
+            console.log(Session.get('title'));
+            var title = $('title');
+            Session.set('nbMsg',Session.get('nbMsg')+1);
+            title.text(Session.get('nbMsg') +" - " + Session.get('title'));
+        }
     }
 });

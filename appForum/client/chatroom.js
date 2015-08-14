@@ -49,12 +49,12 @@ Template.chatroom.events({
         });
     },
     'keyup #chat-input' : function(e){
+        Session.set('blur',false);
         var chatRoomId = this.chatRoomId;
         var chatInput = $('#chat-input');
         var chatBox = $('#chatBox');
         if(!e.shiftKey){
             if(e.which == 13) {
-                console.log("enter");
                 var data = {
                     chatRoomId : chatRoomId,
                     chatRoomMsg : chatInput.val()
@@ -73,7 +73,13 @@ Template.chatroom.events({
     },
     'blur #chat-input': function(e,t){
         Session.set('sendMsg',true);
-
+        Session.set('blur',true);
+    },
+    'focus #chat-input': function(e,t){
+        if(Session.get('title')!=""){
+            var title = $('title');
+            title.text(Session.get('title'));
+        }
     },
     'click #show-users' : function(e,t){
         e.preventDefault();
@@ -115,6 +121,8 @@ Template.chatroom.helpers({
 });
 
 Template.chatroom.onRendered(function () {
+    //session title
+    Session.set('title',$('title').text());
 
     $('.modal-backdrop ').fadeOut();
 
