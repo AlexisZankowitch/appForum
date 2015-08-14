@@ -44,12 +44,13 @@ Template.chatroom.events({
                 console.log(err);
             }else{
                 chatInput.val('');
-                chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
             }
         });
     },
     'keyup #chat-input' : function(e){
         Session.set('blur',false);
+        //enable scrool
+        Session.set('scroll',true);
         var chatRoomId = this.chatRoomId;
         var chatInput = $('#chat-input');
         var chatBox = $('#chatBox');
@@ -64,7 +65,6 @@ Template.chatroom.events({
                         console.log(err);
                     }else{
                         chatInput.val('');
-                        chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
                     }
                 });
 
@@ -74,6 +74,7 @@ Template.chatroom.events({
     'blur #chat-input': function(e,t){
         Session.set('sendMsg',true);
         Session.set('blur',true);
+        $('.list-chat-item:last-child').attr('id','last-seen');
     },
     'focus #chat-input': function(e,t){
         if(Session.get('title')!=""){
@@ -139,10 +140,13 @@ Template.chatroom.onRendered(function () {
     }
 
     //notification
+
     if(notify.requestPermission()==="default"){
         notify.requestPermission();
     }
+    //todo move config into profile
     notify.config({pageVisibility: true, autoClose: 2000});
+
 });
 
 incrementLimit = function(inc,callback){

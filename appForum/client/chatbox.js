@@ -22,13 +22,17 @@ Template.chatbox.events({
     }
 });
 Template.chatmsg.onRendered(function(){
+    //todo return page scrollto #last-seen
     var chatBox = $('#chatBox');
     chatBox.mCustomScrollbar("update");
     if(!Session.equals('limit',20)){
         chatBox.mCustomScrollbar("scrollTo",$(this.firstNode).position().top-$("#chatBox").height()+$("#chatBox").height()*30/100);
     }
     else{
-        $('.list-chat-item:last-child').prev().removeAttr('id','scrool');
+        console.log($('.list-chat-item:last-child').prev().attr('id'));
+        if($('.list-chat-item:last-child').prev().attr('id')!="last-seen"){
+            $('.list-chat-item:last-child').prev().removeAttr('id');
+        }
         $('.list-chat-item:last-child').attr('id','scrool');
     }
     if(Session.get('sendMsg')===true){
@@ -42,5 +46,8 @@ Template.chatmsg.onRendered(function(){
             Session.set('nbMsg',Session.get('nbMsg')+1);
             title.text(Session.get('nbMsg') +" - " + Session.get('title'));
         }
+    }
+    if(Session.get('scroll')){
+        chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
     }
 });
