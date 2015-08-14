@@ -48,29 +48,32 @@ Template.chatroom.events({
             }
         });
     },
-    'focus #chat-input' : function(){
+    'keyup #chat-input' : function(e){
         var chatRoomId = this.chatRoomId;
         var chatInput = $('#chat-input');
         var chatBox = $('#chatBox');
-        $(document).keypress(function(e) {
-            if(!e.shiftKey){
-                if(e.which == 13) {
-                    var data = {
-                        chatRoomId : chatRoomId,
-                        chatRoomMsg : chatInput.val()
-                    };
-                    Meteor.call('sendMsgToChat',data, function (err,t) {
-                        if(err){
-                            console.log(err);
-                        }else{
-                            chatInput.val('');
-                            chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
-                        }
-                    });
+        if(!e.shiftKey){
+            if(e.which == 13) {
+                console.log("enter");
+                var data = {
+                    chatRoomId : chatRoomId,
+                    chatRoomMsg : chatInput.val()
+                };
+                Meteor.call('sendMsgToChat',data, function (err,t) {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        chatInput.val('');
+                        chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
+                    }
+                });
 
-                }
             }
-        });
+        }
+    },
+    'blur #chat-input': function(e,t){
+        Session.set('sendMsg',true);
+
     },
     'click #show-users' : function(e,t){
         e.preventDefault();
@@ -112,7 +115,10 @@ Template.chatroom.helpers({
 });
 
 Template.chatroom.onRendered(function () {
+
     $('.modal-backdrop ').fadeOut();
+
+    //customscrollbar
     var chatBox = $('#chatBox');
     chatBox.mCustomScrollbar({
         theme:"minimal"
@@ -123,6 +129,12 @@ Template.chatroom.onRendered(function () {
     if($('#scrool').position() && Session.equals('limit',20)){
         chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
     }
+
+    //notification
+    if(notify.requestPermission()==="default"){
+        notify.requestPermission();
+    }
+    notify.config({pageVisibility: true, autoClose: 2000});
 });
 
 incrementLimit = function(inc,callback){
@@ -130,4 +142,3 @@ incrementLimit = function(inc,callback){
     newLimit = Session.get('limit') + inc;
     Session.set('limit',newLimit);
 };
-

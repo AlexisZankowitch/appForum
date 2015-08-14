@@ -10,3 +10,4 @@
     momentjs:moment
     utilities:avatar
     email
+    oaf:html5-desktop-notifications

@@ -31,7 +31,10 @@ Template.chatmsg.onRendered(function(){
         $('.list-chat-item:last-child').prev().removeAttr('id','scrool');
         $('.list-chat-item:last-child').attr('id','scrool');
     }
-    $(window).scroll(function(){
-        console.log('aze');
-    });
+    if(Session.get('sendMsg')===true){
+        notify.createNotification( "Hey", {
+            body: "There is a new message !!",
+            icon: "/hipsterlogogenerator_1439211532769.png"
+        });
+    }
 });

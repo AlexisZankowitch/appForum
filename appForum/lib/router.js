@@ -48,7 +48,10 @@ Router.route('/create',function(){
 
 Router.route('/chatroom/:_id',function(){
     name : 'chatroom',
+    //limit msg loaded
     Session.set('limit',20);
+    //Session notification
+    Session.set('sendMsg',false);
     //TODO console warning : Route dispatch never rendered. Did you forget to call this.next() in an onBeforeAction?
 
     this.wait(Meteor.subscribe('usersChat',this.params._id));
