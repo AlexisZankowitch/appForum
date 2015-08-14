@@ -2,12 +2,21 @@ template(name="chatroom")
     #chat-room-id(style="display:none;") #{chatRoomId}
     .col-lg-3.border-right#chatUsers
         .col-lg-12
-            .col-lg-6
-                h2 Users
-            .col-lg-6
-                a#addusers.btn.btn-danger.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#complete-dialog' style="margin-top:23px;")
-                    | Add
-                    .ripple-wrapper
+            if deleteChat
+                .row
+                    .col-lg-6
+                        h2 Chat
+                    .col-lg-6
+                        a.btn.btn-danger.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#delete-dialog' style="margin-top:23px;")
+                            | Delete
+            .row
+                .col-lg-6
+                    h2 Users
+                .col-lg-6
+                    a#addusers.btn.btn-info.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#complete-dialog' style="margin-top:23px;")
+                        | Add
+                        .ripple-wrapper
+
         .col-lg-12#divUsers
             .list-group#list-users
                 each users
@@ -19,7 +28,7 @@ template(name="chatroom")
             textarea#chat-input(placeholder="Type your message here...")
             button.btn.btn-primary#chat-btn(type='submit') Send
     #show-div(style="overflow:hidden")
-        a.btn.btn-danger.btn-fab.btn-raised.mdi-social-group#show-users(href='javascript:void(0)')
+        a.btn.btn-danger.btn-fab.btn-raised.mdi-action-settings#show-users(href='javascript:void(0)')
 
     #complete-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
         .modal-dialog
@@ -29,4 +38,24 @@ template(name="chatroom")
                     h4.modal-title Add users to the chat
                 .modal-body
                     +searchUsers
+                .modal-footer
+
+    #delete-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                    h4.modal-title Confirmation
+                .modal-body
+                    .displayAlert
+                    #deleteButton
+                        .row
+                            .col-lg-8.col-lg-offset-2
+                                p Are you sure you want to delete this Chat room ?
+                        .row.text-center
+                            .col-lg-12
+                                a.btn.btn-info.btn-raised.btn-sm(href="#" data-dismiss="modal")
+                                    | NO
+                                a#delChat.btn.btn-danger.btn-raised.btn-sm(href="#")
+                                    | YES
                 .modal-footer

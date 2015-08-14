@@ -85,6 +85,9 @@ Meteor.methods({
     },
     sendEmail: function (to, from, subject, text) {
         check([to, from, subject], [String]);
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not authorized');
+        }
 
         // Let other method calls from the same client start running,
         // without waiting for the email sending to complete.
@@ -96,5 +99,17 @@ Meteor.methods({
             subject: subject,
             html: text
         });
+    },
+    deleteChatRoom : function(data){
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not authorized');
+        }
+        ChatMsgs.remove({
+            chatRoomId : data.chatRoomId
+        });
+        ChatRooms.remove({
+            _id : data.chatRoomId
+        });
+        throw new Meteor.Error('OK-Confirmation','Chat room has been delete');
     }
 });

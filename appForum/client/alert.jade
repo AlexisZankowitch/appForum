@@ -1,5 +1,8 @@
 template(name="alert")
     .alert.alert-dismissable.alert-danger
         button.close(type='button', data-dismiss='alert') ×
-        strong Oh snap!
         p #{txt}
+        if deleteChat
+            .text-center
+                a#goMain.btn.btn-primary.btn-raised(href="/main" data-dismiss="modal")
+                    | Go Home

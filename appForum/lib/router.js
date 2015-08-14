@@ -50,6 +50,7 @@ Router.route('/chatroom/:_id',function(){
     name : 'chatroom',
     Session.set('limit',20);
     //TODO console warning : Route dispatch never rendered. Did you forget to call this.next() in an onBeforeAction?
+
     this.wait(Meteor.subscribe('usersChat',this.params._id));
     if(this.ready()){
         var chatRoomUsers = ChatRooms.find({
@@ -62,7 +63,6 @@ Router.route('/chatroom/:_id',function(){
         if(jQuery.inArray(Meteor.userId(),chatRoomUsers[0].users)>=0){
             this.render('chatroom',{
                 data : function(){
-                    //TODO limit nb old messages
                     var templateData = {
                         chatRoomId : this.params._id
                     };
@@ -74,7 +74,22 @@ Router.route('/chatroom/:_id',function(){
         }
     }else{
         this.render('Loading');
+        if(ChatRooms.find({_id : this.params._id}).fetch().length === 0){
+            Meteor.setTimeout(function(){
+                var data = {
+                    txt : "The chat room has been delete."
+                };
+                Blaze.renderWithData(Template.alert,data,document.getElementById("alertDelete"));
+                $('<a>',{
+                    text : "GO HOME",
+                    href : "/main",
+                    class : " btn btn-primary btn-raised"
+                }).appendTo($('.alert'));
+                $('.alert').slideDown();
+            },5000);
+        }
     }
+
 });
 
 
