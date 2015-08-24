@@ -1,6 +1,8 @@
 ChatRooms = new Mongo.Collection('chatrooms');
 ChatMsgs = new Mongo.Collection('chatmsgs');
 
+//Todo make invitation system : send mail et tutiquanti
+
 Avatar.setOptions({
     fallbackType: "default image",
     gravatarDefault: "identicon"
@@ -44,7 +46,6 @@ Meteor.methods({
        });
    },
     addUserToChat : function(data){
-        //TODO send email to user
         if(!Meteor.userId()){
             throw new Meteor.Error('not authorized');
         }
