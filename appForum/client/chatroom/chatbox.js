@@ -29,7 +29,6 @@ Template.chatmsg.onRendered(function(){
         chatBox.mCustomScrollbar("scrollTo",$(this.firstNode).position().top-$("#chatBox").height()+$("#chatBox").height()*30/100);
     }
     else{
-        console.log($('.list-chat-item:last-child').prev().attr('id'));
         if($('.list-chat-item:last-child').prev().attr('id')!="last-seen"){
             $('.list-chat-item:last-child').prev().removeAttr('id');
         }
@@ -41,7 +40,6 @@ Template.chatmsg.onRendered(function(){
             icon: "/hipsterlogogenerator_1439211532769.png"
         });
         if(Session.get('blur')){
-            console.log(Session.get('title'));
             var title = $('title');
             Session.set('nbMsg',Session.get('nbMsg')+1);
             title.text(Session.get('nbMsg') +" - " + Session.get('title'));

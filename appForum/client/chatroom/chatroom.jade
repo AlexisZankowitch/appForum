@@ -10,13 +10,14 @@ template(name="chatroom")
                         a.btn.btn-danger.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#delete-dialog' style="margin-top:23px;")
                             | Delete
             .row
-                .col-lg-6
+                .col-lg-4
                     h2 Users
-                .col-lg-6
-                    a#addusers.btn.btn-info.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#complete-dialog' style="margin-top:23px;")
+                .col-lg-8.text-right
+                    a#addusers.btn.btn-info.btn-raised.btn-sm(href="#" data-toggle='modal', data-target='#addusers-dialog' style="margin-top:23px;")
                         | Add
                         .ripple-wrapper
-
+                    a#invite-users.btn.btn-primary.btn-raised.btn-sm(href="#" data-toggle='modal' data-target='#invite-dialog' style='margin-top:23px;')
+                        | Invite
         .col-lg-12#divUsers
             .list-group#list-users
                 each users
@@ -29,8 +30,9 @@ template(name="chatroom")
             button.btn.btn-primary#chat-btn(type='submit') Send
     #show-div(style="overflow:hidden")
         a.btn.btn-danger.btn-fab.btn-raised.mdi-action-settings#show-users(href='javascript:void(0)')
+        //todo turn the damn wheel
 
-    #complete-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
+    #addusers-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
         .modal-dialog
             .modal-content
                 .modal-header
@@ -58,4 +60,31 @@ template(name="chatroom")
                                     | NO
                                 a#delChat.btn.btn-danger.btn-raised.btn-sm(href="#")
                                     | YES
+                .modal-footer
+
+    #invite-dialog.modal.fade.in(tabindex='-1', aria-hidden='false')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                    h4.modal-title Invite somone to the chat
+                .modal-body
+                    .col-lg-12
+                            #alert-email-friend
+                            .col-lg-12
+                                form#invite-form
+                                    .form-group
+                                        .col-lg-10.col-lg-offset-2
+                                        label.control-label(for='email-friend-input') Enter your friend's email below :
+                                        input.form-control(id='email-friend-input' type='email', placeholder='somebody@somedomain.com')
+                                    .form-group
+                                        .col-lg-10.col-lg-offset-2.text-right
+                                            button.btn.btn-info.btn-raised.btn-sm(type='submit' style="margin-top:23px;") Add
+                            .col-lg-12.text-center
+                                form#send-invitation-emails
+                                    .form-group
+                                        .col-lg-8.col-lg-offset-2
+                                            #friends-invited
+                                    .form-group
+                                        button.btn.btn-primary(type='submit') Send invitation
                 .modal-footer

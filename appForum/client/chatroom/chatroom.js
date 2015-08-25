@@ -94,6 +94,97 @@ Template.chatroom.events({
                 "left" : "-100%"
             },"ease-in");
         }
+    },
+    'submit #invite-form' : function (e,t){
+        e.preventDefault();
+        var alert = $('.alert');
+        if($("#invite-form")[0].checkValidity()){
+            var input = t.find('#email-friend-input');
+            if(alert){
+                alert.slideUp();
+                $(".form-group").removeClass('has-error');
+            }
+            var email = {
+                id : Math.floor(Math.random()*1000),
+                email : t.find('#email-friend-input').value
+            };
+            $(input).val("");
+            Blaze.renderWithData(Template.emailinvite,email,t.$('#friends-invited').get(0));
+            $('#friends-invited').stop().slideDown();
+        }else{
+            $(".form-group").addClass('has-error');
+            var data = {
+                txt : "Please enter a valid email !!"
+            };
+            Blaze.renderWithData(Template.alert,data,t.$('#alert-email-friend').get(0));
+            $('.alert').slideDown();
+        }
+    },
+    'click .remove-email' : function(e,t){
+        var id = "#"+this.id;
+        $(id).stop().slideUp('fast',function(){
+            if($('.friends-invited').length<2){
+                $('#friends-invited').stop().fadeOut();
+            }
+            $(this).remove();
+        });
+    },
+    'submit #send-invitation-emails' : function(e,t){
+        e.preventDefault();
+        var alert = $('.alert');
+        var emails = t.findAll(".friends-invited");
+        if(emails.length<1){
+            var data = {
+                txt : "Please enter at least one email !!"
+            };
+            Blaze.renderWithData(Template.alert,data,t.$('#alert-email-friend').get(0));
+            alert.slideDown();
+        }else{
+            if(alert){
+                alert.remove();
+            }
+            emails.forEach(function(email){
+                var data = {
+                    email : email.value
+                };
+                Meteor.call("sendEmailInvite",data,function(err,res){
+                    if(err){
+                        var data = {
+                            txt : "There was an error, please retry later..."
+                        };
+                        Blaze.renderWithData(Template.alert,data,t.$('#alert-email-friend').get(0));
+                        $('.alert').slideDown();
+                    }else{
+                        console.log(res);
+                        var chatroom =  ChatRooms.find({
+                            _id : $('#chat-room-id').text()
+                        }).fetch();
+                        var user = Meteor.users.find({
+                            _id : res
+                        }).fetch();
+                        console.log(user[0]);
+                        var data = {
+                            chatRoomId : chatroom[0]._id,
+                            userId : user[0]._id,
+                            name : chatroom[0].name,
+                            pass : chatroom[0].password,
+                            description : chatroom[0].description,
+                            useremail : user[0].emails[0].address
+                        };
+                        Meteor.call('sendEmail',
+                            "zankowitch@gmail.com",
+                            "talkietalk@meteor.com",
+                            'Hello from TalkieTalk!',
+                            Blaze.toHTMLWithData(Template.invitationemail,data));
+                        var data = {
+                            txt : "Your invitations has been send"
+                        };
+                        Blaze.renderWithData(Template.success,data,t.$('#alert-email-friend').get(0));
+                        $('.alert').slideDown();
+                    }
+                });
+            });
+        }
     }
 });
 Template.chatroom.helpers({

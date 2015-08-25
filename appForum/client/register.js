@@ -5,8 +5,7 @@ Template.signup.events({
             email : t.find('#inputEmailSignUp').value,
             password : t.find('#inputPasswordSignUp').value,
             username : t.find('#inputUserNameSignUp').value,
-        }
-        console.log(data);
+        };
         Accounts.createUser({email : data.email, password : data.password, username : data.username},function(err){
             if(err){
                 $('#labelEmail').addClass('has-error');

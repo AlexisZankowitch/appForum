@@ -20,10 +20,3 @@ Meteor.publish("chatMessages",function(limit){
     }
     return ChatMsgs.find({},{limit: limit});
 });
-
-Meteor.startup(function () {
-    console.log('url:', Avatar.getUrl());
-    console.log('startup...');
-    console.log('options:', Avatar.options);
-    console.log('url:', Avatar.getUrl());
-});

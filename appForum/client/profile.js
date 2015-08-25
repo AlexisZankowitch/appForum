@@ -1,3 +1,5 @@
+//todo user can change username
+
 Template.profile.helpers({
     email : function(){
         return Meteor.users.find({

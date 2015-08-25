@@ -1,0 +1,7 @@
+template(name="emailinvite")
+    .row(id="#{id}")
+        .col-lg-10
+            input#disabledInput.form-control.friends-invited(type='text', placeholder='Disabled input here...', disabled='', value="#{email}")
+
+        .col-lg-2
+            button.close.remove-email(type='button', aria-hidden='true') ×
