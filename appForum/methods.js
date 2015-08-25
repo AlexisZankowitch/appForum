@@ -96,6 +96,7 @@ Meteor.methods({
             }
         })
     },
+    //TODO template email
     sendEmail: function (to, from, subject, text) {
         check([to, from, subject], [String]);
         if(!Meteor.userId()){

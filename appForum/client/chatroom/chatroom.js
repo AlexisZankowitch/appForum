@@ -86,13 +86,19 @@ Template.chatroom.events({
         e.preventDefault();
         var div = $("#chatUsers");
         if(!div.attr('style') || div.attr('style')==="left: -100%;"){
+            $("#show-users").addClass('animation-roundin');
+            $("#show-users").removeClass('animation-roundout');
             div.stop().animate({
                 "left" : "0%"
             },"ease-in");
         }else{
+            $("#show-users").removeClass('animation-roundin');
+            $("#show-users").addClass('animation-roundout');
             div.stop().animate({
                 "left" : "-100%"
-            },"ease-in");
+            },"ease-in",function(){
+
+            });
         }
     },
     'submit #invite-form' : function (e,t){
@@ -149,13 +155,12 @@ Template.chatroom.events({
                 };
                 Meteor.call("sendEmailInvite",data,function(err,res){
                     if(err){
-                        var data = {
-                            txt : "There was an error, please retry later..."
+                        data = {
+                            txt : err.reason+ " "+ data.email
                         };
                         Blaze.renderWithData(Template.alert,data,t.$('#alert-email-friend').get(0));
                         $('.alert').slideDown();
                     }else{
-                        console.log(res);
                         var chatroom =  ChatRooms.find({
                             _id : $('#chat-room-id').text()
                         }).fetch();
@@ -163,7 +168,7 @@ Template.chatroom.events({
                             _id : res
                         }).fetch();
                         console.log(user[0]);
-                        var data = {
+                        data = {
                             chatRoomId : chatroom[0]._id,
                             userId : user[0]._id,
                             name : chatroom[0].name,
@@ -176,13 +181,19 @@ Template.chatroom.events({
                             "talkietalk@meteor.com",
                             'Hello from TalkieTalk!',
                             Blaze.toHTMLWithData(Template.invitationemail,data));
-                        var data = {
-                            txt : "Your invitations has been send"
+                        data = {
+                            txt : "Your invitation has been send to "+data.useremail
                         };
                         Blaze.renderWithData(Template.success,data,t.$('#alert-email-friend').get(0));
                         $('.alert').slideDown();
                     }
                 });
+            });
+            $('.email-invite-block').slideUp('fast',function(){
+                if($('.friends-invited').length<2){
+                    $('#friends-invited').stop().fadeOut();
+                }
+                $(this).remove();
             });
         }
     }
