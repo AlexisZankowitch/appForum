@@ -1,0 +1,28 @@
+template(name="createaccount")
+    .container
+        #firstRow
+            .col-lg-12.text-center
+                img#logo-main(src="/hipsterlogogenerator_1439211532769.png" style="height:400px")
+        .row
+            .col-md-4
+            .col-md-4.well
+                form.form-horizontal#invted-user-account-creation
+                    .displayAlert
+                    fieldset
+                        legend Create your account
+                        .form-group.labelpassword
+                            .col-lg-1
+                            .col-lg-10
+                                label.control-label(for='email') Email
+                                input#email.form-control(type='email', value='#{email}', disabled)
+                            .col-lg-1
+                        .form-group.labelpassword
+                            .col-lg-1
+                            .col-lg-10
+                                label.control-label(for='password') Password
+                                input#password.form-control(type='password', placeholder='Password')
+                            .col-lg-1
+                        .form-group
+                            .col-lg-12.text-center
+                                button.btn.btn-primary(type='submit') Start my TalkieTalk !
+            .col-md-4

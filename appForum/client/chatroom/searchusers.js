@@ -4,7 +4,6 @@ Template.searchUsers.events({
             _id : $('#chat-room-id').text()
         }).fetch();
         e.preventDefault();
-        console.log(chatroom);
         var data = {
             chatRoomId : chatroom[0]._id,
             userId : this._id,

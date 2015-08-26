@@ -84,21 +84,27 @@ Template.chatroom.events({
     },
     'click #show-users' : function(e,t){
         e.preventDefault();
+        var showUser = $("#show-users");
+        var showDiv = $("#show-div");
         var div = $("#chatUsers");
         if(!div.attr('style') || div.attr('style')==="left: -100%;"){
-            $("#show-users").addClass('animation-roundin');
-            $("#show-users").removeClass('animation-roundout');
+            showUser.addClass('animation-roundin');
+            showUser.removeClass('animation-roundout');
+            showDiv.stop().animate({
+                "left" : "27%"
+            });
             div.stop().animate({
                 "left" : "0%"
             },"ease-in");
         }else{
-            $("#show-users").removeClass('animation-roundin');
-            $("#show-users").addClass('animation-roundout');
+            showUser.removeClass('animation-roundin');
+            showUser.addClass('animation-roundout');
+            showDiv.stop().animate({
+                "left" : "2%"
+            });
             div.stop().animate({
                 "left" : "-100%"
-            },"ease-in",function(){
-
-            });
+            },"ease-in");
         }
     },
     'submit #invite-form' : function (e,t){
@@ -144,7 +150,7 @@ Template.chatroom.events({
                 txt : "Please enter at least one email !!"
             };
             Blaze.renderWithData(Template.alert,data,t.$('#alert-email-friend').get(0));
-            alert.slideDown();
+            $('.alert').slideDown();
         }else{
             if(alert){
                 alert.remove();
@@ -165,19 +171,19 @@ Template.chatroom.events({
                             _id : $('#chat-room-id').text()
                         }).fetch();
                         var user = Meteor.users.find({
-                            _id : res
+                            _id : res.accountRes
                         }).fetch();
-                        console.log(user[0]);
                         data = {
                             chatRoomId : chatroom[0]._id,
                             userId : user[0]._id,
                             name : chatroom[0].name,
                             pass : chatroom[0].password,
                             description : chatroom[0].description,
-                            useremail : user[0].emails[0].address
+                            useremail : user[0].emails[0].address,
+                            userpass : res.accountPas
                         };
                         Meteor.call('sendEmail',
-                            "zankowitch@gmail.com",
+                            data.useremail,
                             "talkietalk@meteor.com",
                             'Hello from TalkieTalk!',
                             Blaze.toHTMLWithData(Template.invitationemail,data));

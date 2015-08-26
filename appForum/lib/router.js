@@ -97,12 +97,28 @@ Router.route('/chatroom/:_id',function(){
 
 });
 
-
+Router.route('/createaccount/:_userId/talkieroom/:_chatroomId',function(){
+    var user = Meteor.users.find({
+        _id : this.params._userId
+    }).fetch();
+    if(user.length<1 || !user[0].profile.invited){
+        this.render('home');
+    }else{
+        Session.set('userId',user[0]._id);
+        Session.set('talkieroom',this.params._chatroomId);
+        this.render('createaccount');
+    }
+},{
+    name : 'createaccount'
+});
 
 Router.onBeforeAction(function(){
+
     if(!Meteor.userId()){
         this.render('home');
     }else{
         this.next();
     }
+},{
+    except : ['createaccount']
 });

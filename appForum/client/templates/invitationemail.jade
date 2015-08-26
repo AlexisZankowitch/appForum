@@ -6,12 +6,13 @@ template(name="invitationemail")
             h1 TalkieTalk invitation
             div
                 p You have been invitated to joind a chatroom on TalkieTalk, but it appears that you don't have an account :-(...
-                p Don't worry we have created one just for you !! Now you just have to click on the link below to complete your inscription (choose a password)
+                p Don't worry we have created one just for you !! Now you just have to click on the link below to loggin with the credentials below.
                 p After that you will be automatically directed through your TalkieRoom.
                 ul
                     li login : #{useremail}
-                p Click the link below to start your TalkieTalk !
-                a(href="http://talkietalk.meteor.com/CreateAccount/#{userId}/#{chatRoomId}") Choose my TalkiePass and start my TalkieTalk !!
+                    li password : #{userpass}
+                    li
+                        a(href="#{location}/createaccount/#{userId}/talkieroom/#{chatRoomId}") Start my TalkieTalk !!
                 p Information about your TalkieRoom :
                 ul
                     li chatroom : #{name}

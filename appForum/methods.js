@@ -1,9 +1,6 @@
 ChatRooms = new Mongo.Collection('chatrooms');
 ChatMsgs = new Mongo.Collection('chatmsgs');
 
-//Todo make invitation system : send mail et tutiquanti
-//todo page createaccount redirect talkieroom
-
 
 function generatePassword() {
     var length = 8,
@@ -126,15 +123,23 @@ Meteor.methods({
         });
         throw new Meteor.Error('OK-Confirmation','Chat room has been delete');
     },
-    sendEmailInvite : function(dataIn){
-        if(!Meteor.userId()){
+    sendEmailInvite : function(dataIn) {
+        if (!Meteor.userId()) {
             throw new Meteor.Error('not authorized');
         }
         var data = {
-            email : dataIn.email,
-            password : generatePassword(),
-            username : dataIn.email.split('@')[0]
+            email: dataIn.email,
+            password: generatePassword(),
+            username: dataIn.email.split('@')[0]
         };
-        return Accounts.createUser({email : data.email, username : data.username});
+        var profile = {
+            invited: true
+        };
+        var ret = {
+            accountRes : Accounts.createUser({email: data.email, password: data.password, username: data.username, profile: profile}),
+            accountPas : data.password
+        };
+        return ret;
+
     }
 });
