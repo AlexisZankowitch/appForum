@@ -140,6 +140,19 @@ Meteor.methods({
             accountPas : data.password
         };
         return ret;
-
+    },
+    setInvitedToFalse : function(data){
+        if (!Meteor.userId()) {
+            throw new Meteor.Error('not authorized');
+        }
+        Meteor.users.update({
+            _id: data
+        }, {
+            $set: {
+                profile: {
+                    invited: false
+                }
+            }
+        })
     }
 });

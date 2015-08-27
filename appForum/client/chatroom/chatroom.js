@@ -246,15 +246,6 @@ Template.chatroom.onRendered(function () {
     if($('#scrool').position() && Session.equals('limit',20)){
         chatBox.mCustomScrollbar("scrollTo",$('#scrool').position().top+$('#scrool').height());
     }
-
-    //notification
-
-    if(notify.requestPermission()==="default"){
-        notify.requestPermission();
-    }
-    //todo move config into profile
-    notify.config({pageVisibility: true, autoClose: 2000});
-
 });
 
 incrementLimit = function(inc,callback){

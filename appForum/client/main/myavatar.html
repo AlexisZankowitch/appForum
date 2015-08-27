@@ -1,0 +1,10 @@
+<template name="myavatar">
+    {{#each userProfile}}
+    <div class="user text-center">
+        {{> avatar user=this size='large' shape='circle' class="margin-auto"}}
+        <small>
+            <a href="http://fr.gravatar.com/">Create your gravatar account</a>
+        </small>
+    </div>
+    {{/each}}
+</template>

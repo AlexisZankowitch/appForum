@@ -54,7 +54,6 @@ Router.route('/chatroom/:_id',function(){
     Session.set('sendMsg',false);
     Session.set('nbMsg',0);
     Session.set('scroll',false);
-    //TODO console warning : Route dispatch never rendered. Did you forget to call this.next() in an onBeforeAction?
 
     this.wait(Meteor.subscribe('usersChat',this.params._id));
     if(this.ready()){
@@ -102,7 +101,7 @@ Router.route('/createaccount/:_userId/talkieroom/:_chatroomId',function(){
         _id : this.params._userId
     }).fetch();
     if(user.length<1 || !user[0].profile.invited){
-        this.render('home');
+        this.render('main');
     }else{
         Session.set('userId',user[0]._id);
         Session.set('talkieroom',this.params._chatroomId);

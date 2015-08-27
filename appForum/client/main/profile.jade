@@ -4,38 +4,43 @@ template(name='profile')
            .col-lg-3
            .col-lg-6.well
                .row
-                   h2 Modify my profile
-                   each userprofile
-                       .col-lg-2
+                   .col-lg-6
+                       h2 Modify my profile
+                   .col-lg-6
+                       each userprofile
                            +myavatar
-                       .col-lg-10
-                           form.form-horizontal#formProfile
+               .row
+                   .col-lg-10.col-lg-offset-1
+                       form.form-horizontal#formProfile
+                           .col-lg-10.col-lg-offset-1
+                               #displayAlert
+                           .form-group
                                .col-lg-10.col-lg-offset-1
-                                   .alert.alert-dismissable.alert-danger#passFailure
-                                       button.close(type='button', data-dismiss='alert') ×
-                                       strong Oh snap!
-                                       p It seems that this email is already used.
-                                   .alert.alert-dismissable.alert-primary#passOk
-                                       button.close(type='button', data-dismiss='alert') ×
-                                       p Your password has been changed.
-                               .form-group.has-warning
-                                   .col-lg-10.col-lg-offset-1
-                                      label.control-label(for='Username') Username
-                                      input#Username.form-control.input-lg(type='text' value="#{username}" disabled)
-                               .form-group#pass
-                                   .col-lg-10.col-lg-offset-1
-                                       label.control-label(for='Password') Old password
-                                       input#oldPassword.form-control(type='password' value="")
-                               .form-group
-                                   .col-lg-10.col-lg-offset-1
-                                       label.control-label(for='Password') New password
-                                       input#newPassword.form-control(type='password' value="")
-                               .form-group.has-warning
-                                   .col-lg-10.col-lg-offset-1
-                                       label.control-label(for='Email') Email
-                                       input#Email.form-control(type='email' value="#{email}" disabled)
-                               .form-group
-                                   .col-lg-12.text-center
-                                       button.btn.btn-default#resetProfile(type="reset") Reset
-                                       button.btn.btn-primary(type='submit') Modify
-           .col-lg-3
+                                  label.control-label(for='username') Username
+                                  input#username.form-control.input-lg(type='text' value="#{username}")
+                           .form-group#pass
+                               .col-lg-10.col-lg-offset-1
+                                   label.control-label(for='Password') Old password
+                                   input#oldPassword.form-control(type='password' value="")
+                           .form-group
+                               .col-lg-10.col-lg-offset-1
+                                   label.control-label(for='Password') New password
+                                   input#newPassword.form-control(type='password' value="")
+                           .form-group.has-disabled
+                               .col-lg-10.col-lg-offset-1
+                                   label.control-label(for='Email') Email
+                                   input#Email.form-control(type='email' value="#{email}" disabled)
+                           .form-group
+                               .col-lg-12.text-center
+                                   button.btn.btn-default#resetProfile(type="reset") Reset
+                                   button.btn.btn-primary(type='submit') Modify
+               .row
+                   .col-lg-12.text-left
+                       h2 Notifications
+                   .col-lg-10.col-lg-offset-1
+                       .togglebutton.text-center
+                            label
+                                input#notifications(type='checkbox', checked='')
+                                span.toggle
+                                |  Notifications
+    .col-lg-3

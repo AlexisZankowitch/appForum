@@ -20,6 +20,7 @@ Template.createaccount.events({
                     userId : Session.get('userId')
                 };
                 Meteor.call('addUserToChat',data);
+                Meteor.call('setInvitedToFalse',Meteor.userId());
                 Router.go('/chatroom/'+Session.get('talkieroom'));
             }
         });

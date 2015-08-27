@@ -34,11 +34,13 @@ Template.chatmsg.onRendered(function(){
         }
         $('.list-chat-item:last-child').attr('id','scrool');
     }
-    if(Session.get('sendMsg')===true){
-        notify.createNotification( "Hey", {
-            body: "There is a new message !!",
-            icon: "/hipsterlogogenerator_1439211532769.png"
-        });
+    if(Session.get('sendMsg')===true ){
+        if((Meteor.user().profile.notification ==='undefined' || Meteor.user().profile.notification)){
+            notify.createNotification( "Hey", {
+                body: "There is a new message !!",
+                icon: "/hipsterlogogenerator_1439211532769.png"
+            });
+        }
         if(Session.get('blur')){
             var title = $('title');
             Session.set('nbMsg',Session.get('nbMsg')+1);
